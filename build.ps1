@@ -7,7 +7,7 @@ $compilerCandidates = @(
 $compiler = $compilerCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 
 if (-not $compiler) {
-    throw '找不到 .NET Framework 4.x C# 编译器。'
+    throw 'The .NET Framework 4.x C# compiler was not found.'
 }
 
 $source = Join-Path $PSScriptRoot 'src\LanSwitch.cs'
@@ -18,6 +18,7 @@ New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
 & $compiler `
     /nologo `
     /optimize+ `
+    /codepage:65001 `
     /target:winexe `
     "/out:$output" `
     /reference:System.dll `
@@ -30,7 +31,7 @@ New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
     $source
 
 if ($LASTEXITCODE -ne 0) {
-    throw "编译失败，退出代码：$LASTEXITCODE"
+    throw "Compilation failed with exit code $LASTEXITCODE."
 }
 
 Get-Item -LiteralPath $output | Select-Object FullName, Length, LastWriteTime
