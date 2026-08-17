@@ -1,5 +1,7 @@
 # LanSwitch
 
+[简体中文](README.md) | [English](README_EN.md)
+
 首次安装授权一次，之后无需 UAC 弹窗，一键启用或禁用指定网卡，让 Windows 自动在有线与无线网络之间切换。
 
 ## 功能
