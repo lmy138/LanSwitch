@@ -1,0 +1,18 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build single-file executable
+        shell: powershell
+        run: .\build.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LanSwitch
+          path: dist/LanSwitch.exe

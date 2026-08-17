@@ -1,0 +1,7 @@
+dist/
+*.InstallLog
+*.InstallState
+*.user
+.vs/
+bin/
+obj/
